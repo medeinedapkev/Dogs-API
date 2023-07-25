@@ -1,7 +1,9 @@
 const puppyForm = document.querySelector('#puppy-form');
 const selectPuppy = document.querySelector('#dog');
+
+const pictureContainer = document.createElement('div');
+pictureContainer.classList.add('picture-container');
 const dogsPicture = document.createElement('img');
-puppyForm.before(dogsPicture);
 
 puppyForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -39,5 +41,8 @@ function getDogPicture(dogsBreed) {
     .then(response => response.json())
     .then(image => {
         dogsPicture.setAttribute('src', `${image.message}`);
+        dogsPicture.classList.add('breed-pic');
+        puppyForm.before(pictureContainer);
+        pictureContainer.append(dogsPicture);
     })
 }
